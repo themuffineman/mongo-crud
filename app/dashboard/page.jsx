@@ -20,7 +20,13 @@ const page = () => {
                 <h1 className='font-bold tracking-tighter text-3xl text-black'>All Notes</h1>
                 <button className='bg-black p-3 text-white rounded-sm hover:bg-neutral-700'>Create a new note</button>
             </div> 
-            <div>
+            <div className='w-full self-center overflow-scroll overflow-x-hidden p-5 flex flex-col items-center gap-5'>
+               <Note/>
+               <Note/>
+               <Note/>
+               <Note/>
+               <Note/>
+               <Note/>
                <Note/>
                <Note/>
                <Note/>
