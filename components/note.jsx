@@ -31,7 +31,7 @@ const Note = ({noteData}) => {
     <div className='flex flex-col items-center p-4 gap-3 w-[30rem] shadow-md border border-gray-200 rounded-md'>
         <div className='flex items-center w-full justify-between'> 
             <input type="checkbox" />
-            <p>noteData.createdAt</p>
+            <p>{noteData.createdAt}</p>
         </div>
         <div className='w-full'>
             {isEditing? <input ref={noteContainer} type='text' className='h-20 p-1 w-full shadow border border-neutral-300 rounded-md' value={noteText} onChange={(e) => noteFunc(e)}/> : <p ref={noteContainer} className='h-20 w-full shadow border border-neutral-300 rounded-md'>{noteText}</p>}

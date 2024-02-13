@@ -8,7 +8,7 @@ const page = async () => {
     
 
    const { isAuthenticated, getUser} = getKindeServerSession();
-   const [userData, setUserData] = useState()
+   const [userData, setUserData] = useState([])
    const user = await getUser();
    console.log(user)
 
@@ -19,9 +19,15 @@ const page = async () => {
     useEffect(()=>{
         const getUserData = async ()=>{
             try {
-                const apiRes = await fetch(`http://localhost:3000/api/userdata/${user.id}`)
-                const userDataObject = await apiRes.json()
-                setUserData(userDataObject)
+                const apiRes = await fetch("http://localhost:3000/api/userdata", {
+                    headers:{
+                        "Content-Type": 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify({ user })
+                })
+                const {userNotes} = await apiRes.json()
+                setUserData(userNotes)
 
             } catch (error) {
                 console.error('Error Fetching User Data:', error)
@@ -49,7 +55,9 @@ const page = async () => {
                 <button className='bg-black p-3 text-white rounded-sm hover:bg-neutral-700'>Create a new note</button>
             </div> 
             <div className='w-full scroll-smooth grid grid-flow-row justify-items-center self-center overflow-scroll overflow-x-hidden p-5 gap-5'>
-                {/* {user.map((note)=> <Note noteData={note}/>)} */}
+                {userData? userData.map((note)=>(
+                  <Note noteData={note} />  
+                ))}
             </div>
         </div>
     </div>
