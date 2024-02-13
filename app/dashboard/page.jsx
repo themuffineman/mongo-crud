@@ -16,25 +16,25 @@ const page = async () => {
     redirect('/api/auth/login')
    }
 
-    useEffect(()=>{
-        const getUserData = async ()=>{
-            try {
-                const apiRes = await fetch("http://localhost:3000/api/userdata", {
-                    headers:{
-                        "Content-Type": 'application/json'
-                    },
-                    method: "POST",
-                    body: JSON.stringify({ user })
-                })
-                const {userNotes} = await apiRes.json()
-                setUserData(userNotes)
+    // useEffect(()=>{
+    //     const getUserData = async ()=>{
+    //         try {
+    //             const apiRes = await fetch("http://localhost:3000/api/userdata", {
+    //                 headers:{
+    //                     "Content-Type": 'application/json'
+    //                 },
+    //                 method: "POST",
+    //                 body: JSON.stringify({ user })
+    //             })
+    //             const {userNotes} = await apiRes.json()
+    //             setUserData(userNotes)
 
-            } catch (error) {
-                console.error('Error Fetching User Data:', error)
-            }
-        }
-        getUserData()
-    }, [])
+    //         } catch (error) {
+    //             console.error('Error Fetching User Data:', error)
+    //         }
+    //     }
+    //     getUserData()
+    // }, [])
 
   return (
     <div className='w-full h-screen flex items-center justify-between '>
@@ -57,7 +57,7 @@ const page = async () => {
             <div className='w-full scroll-smooth grid grid-flow-row justify-items-center self-center overflow-scroll overflow-x-hidden p-5 gap-5'>
                 {userData? userData.map((note)=>(
                   <Note noteData={note} />  
-                ))}
+                )): "No notes to display. Create a new note"}
             </div>
         </div>
     </div>
