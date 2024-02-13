@@ -1,7 +1,10 @@
+"use client"
+
 import Note from '@/components/note'
-import React from 'react'
+import React, {useContext} from 'react'
 
 const page = () => {
+    // const user = useContext(UserDataContext)
   return (
     <div className='w-full h-screen flex items-center justify-between '>
         <div className='h-full w-[15%] bg-white border-r border-gray-100 relative flex flex-col justify-between items-center'>
@@ -15,17 +18,12 @@ const page = () => {
             </div>
             <div className="mb-4 bg-gray-100 w-40 rounded-md text-black font-bold p-5 tracking-tighter">Profile</div>
         </div>
-        <div className='h-full p-10 w-[85%] bg-gray-100 flex flex-col'>  
+        <div className='h-full p-10 pt-4 w-[85%] bg-gray-100 flex flex-col'>  
             <div className='w-full flex items-center justify-between'>
                 <h1 className='font-bold tracking-tighter text-3xl text-black'>All Notes</h1>
                 <button className='bg-black p-3 text-white rounded-sm hover:bg-neutral-700'>Create a new note</button>
             </div> 
-            <div className='w-full self-center overflow-scroll overflow-x-hidden p-5 flex flex-col items-center gap-5'>
-               <Note/>
-               <Note/>
-               <Note/>
-               <Note/>
-               <Note/>
+            <div className='w-full scroll-smooth grid grid-flow-row justify-items-center self-center overflow-scroll overflow-x-hidden p-5 gap-5'>
                <Note/>
                <Note/>
                <Note/>

@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useRef, useState } from 'react'
+import React, {useEffect, useRef, useState } from 'react'
 
 const Note = () => {
     const [isEditing, setIsEditing]= useState(false)
@@ -28,7 +28,7 @@ const Note = () => {
   return (
     <div className='flex flex-col items-center p-4 gap-3 w-[30rem] shadow-md border border-gray-200 rounded-md'>
         <div className='flex items-center w-full justify-between'> 
-            <input type="checkbox" name="" id="" />
+            <input type="checkbox" />
             <p>17:30</p>
         </div>
         <div className='w-full'>

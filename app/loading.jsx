@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const loading = () => {
+const Loading = () => {
     
     return(
     <div className='flex gap-2 items-center p-4 bg-black border border-white fixed bottom-5 shadow-md -translate-x-1/2 left-1/2 rounded-md animate-in'>
@@ -11,4 +11,4 @@ const loading = () => {
     )
 }
 
-export default loading
+export default Loading
