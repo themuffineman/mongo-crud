@@ -1,10 +1,9 @@
 "use client"
-
 import Note from '@/components/note'
 import React, {useContext} from 'react'
 
 const page = () => {
-    // const user = useContext(UserDataContext)
+    const user = useContext(UserDataContext)
   return (
     <div className='w-full h-screen flex items-center justify-between '>
         <div className='h-full w-[15%] bg-white border-r border-gray-100 relative flex flex-col justify-between items-center'>
@@ -24,10 +23,7 @@ const page = () => {
                 <button className='bg-black p-3 text-white rounded-sm hover:bg-neutral-700'>Create a new note</button>
             </div> 
             <div className='w-full scroll-smooth grid grid-flow-row justify-items-center self-center overflow-scroll overflow-x-hidden p-5 gap-5'>
-               <Note/>
-               <Note/>
-               <Note/>
-               <Note/>
+                {user.map((note)=> <Note noteData={note}/>)}
             </div>
         </div>
     </div>
