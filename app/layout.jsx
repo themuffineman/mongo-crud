@@ -20,7 +20,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <main className="flex min-h-screen h-screen w-screen min-w-screen flex-col items-center justify-center">
-          {/* {
+          {
             await isAuthenticated()? (
             null
             ):(
@@ -35,9 +35,8 @@ export default async function RootLayout({ children }) {
                     <Button variant="outline"><RegisterLink>Register</RegisterLink></Button>
                   </div>
                 )}
-              
             </nav>)
-          } */}
+          }
         {children}
         {isLoading && <Loading/> }
         </main>

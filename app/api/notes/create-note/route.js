@@ -1,5 +1,5 @@
 import { connectToMongoDB } from "@/utils/mongoDBConnect"
-// import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import { UserDataModel, NotesDataModel } from "@/utils/userDataSchema";
 import { NextResponse } from "next/server";
 
@@ -7,14 +7,13 @@ import { NextResponse } from "next/server";
 export const POST= async (req)=>{
 
     try {
-        // const { isAuthenticated, getUser} = getKindeServerSession();
+        const { isAuthenticated, getUser} = getKindeServerSession();
 
-        // if(!(await isAuthenticated())){
-        //     throw new Error({message: "User not authorized", status: 401})
-        // }
+        if(!(await isAuthenticated())){
+            throw new Error({message: "User not authorized", status: 401})
+        }
 
-        // const {id} = await getUser()
-        const {noteText, id} = await req.json()
+        const {id} = await getUser()
         await connectToMongoDB()
 
         const user = await UserDataModel.findOne({ authUserId:id });

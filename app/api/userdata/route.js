@@ -10,6 +10,7 @@ export const POST = async (req)=>{
         let userData = await UserDataModel.findOne({ authUserId: id });
         if (!userData) {
             userData = await UserDataModel.create({ authUserId: id, email, notes: [] });
+            return NextResponse("New User Document Created")
         }
         return NextResponse.json({userNotes: userData.notes}, {status: 200})
 
