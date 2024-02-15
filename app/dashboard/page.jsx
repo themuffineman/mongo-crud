@@ -1,11 +1,11 @@
 "use client";
 
 import Note from '@/components/note'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {useKindeBrowserClient} from "@kinde-oss/kinde-auth-nextjs";
 import NewNote from '@/components/newNote';
-import { Button } from '@/components/ui/button';
 import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
+import { redirect } from 'next/navigation';
 
 
 const page = async () => {
@@ -14,32 +14,30 @@ const page = async () => {
    const { isAuthenticated, user} = useKindeBrowserClient();
    const [userData, setUserData] = useState([])
    const [creatingNote, setCreatingNote] = useState(false)
-   console.log(user)
-   console.log(isAuthenticated)
 
-   if(!isAuthenticated){
-    redirect('api/auth/login')
-   }
+//    if(!isAuthenticated){
+//     redirect('/api/auth/login')
+//    }
 
-    useEffect(()=>{
-        const getUserData = async ()=>{
-            try {
-                const apiRes = await fetch("http://localhost:3000/api/userdata", {
-                    headers:{
-                        "Content-Type": 'application/json'
-                    },
-                    method: "POST",
-                    body: JSON.stringify({ user })
-                })
-                const {userNotes} = await apiRes.json()
-                setUserData(userNotes)
+    // useEffect(()=>{
+    //     const getUserData = async ()=>{
+    //         try {
+    //             const apiRes = await fetch("http://localhost:3000/api/userdata", {
+    //                 headers:{
+    //                     "Content-Type": 'application/json'
+    //                 },
+    //                 method: "POST",
+    //                 body: JSON.stringify({ user })
+    //             })
+    //             const {userNotes} = await apiRes.json()
+    //             setUserData(userNotes)
 
-            } catch (error) {
-                console.error('Error Fetching User Data:', error)
-            }
-        }
-        getUserData()
-    }, [])
+    //         } catch (error) {
+    //             console.error('Error Fetching User Data:', error)
+    //         }
+    //     }
+    //     getUserData()
+    // }, [])
 
   return (
     <div className='w-full h-screen flex items-center justify-between '>
@@ -53,8 +51,8 @@ const page = async () => {
                 <h3 className=' cursor-pointer text-left hover:bg-gray-100 pl-3 py-3 w-full rounded-sm text-black font-semibold tracking-tighter'>Completed Notes</h3>
             </div>
             <div className="mb-4 bg-gray-100 w-40 rounded-md items-center flex flex-col gap-2 text-black font-bold p-5 tracking-tighter">
-                <p>Welcome {user.given_name}</p>
-                <LogoutLink className='p-4 text-center bg-black text-white rounded-md font-semibold'>Log Out</LogoutLink>
+            <p>Welcome {user?.given_name}</p>
+            <LogoutLink className='p-4 text-center bg-black text-white rounded-md font-semibold'>Log Out</LogoutLink>
             </div>
         </div>
         <div className='h-full p-10 pt-4 w-[85%] bg-gray-100 flex flex-col'>  
@@ -66,7 +64,10 @@ const page = async () => {
             <div className='w-full scroll-smooth grid grid-flow-row justify-items-center self-center overflow-scroll overflow-x-hidden p-5 gap-5'>
                 {userData? userData.map((note)=>(
                   <Note noteData={note} />  
-                )): "No notes to display. Create a new note"}
+                ))
+                : 
+                <p>No notes to display. Create a new note</p>
+                }
             </div>
         </div>
     </div>
