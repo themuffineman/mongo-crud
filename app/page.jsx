@@ -1,14 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import {LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
 
 export default function Home() {
   return (
     <>
-      <nav className="flex justify-between sticky top-0 min-w-full bg-slate-100 p-4 shadow-sm">
+      <nav className="flex justify-between fixed top-0 min-w-full bg-slate-100 p-4 shadow-sm">
         <div className="text-black font-bold tracking-tighter text-2xl">MuffineNotes📝</div>
         <div className="flex gap-4 items-center">
-          <Button variant="outline"><LoginLink>Login</LoginLink></Button>
-          <Button variant="outline"><RegisterLink>Register</RegisterLink></Button>
+          <LoginLink><Button variant="outline">Login</Button></LoginLink>
+          <RegisterLink><Button variant="outline">Register</Button></RegisterLink>
         </div>
       </nav>
       <h1 className="text-black font-bold text-4xl">Welcome to MuffineNotes📝</h1>
