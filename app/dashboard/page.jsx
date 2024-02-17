@@ -17,11 +17,11 @@ const page = () => {
    console.log(user)
    console.log(isAuthenticated)
 
-//    useEffect(()=>{
-//        if (!isAuthenticated){
-//            redirect('/')
-//        }
-//    }, [isAuthenticated])
+   useEffect(()=>{
+       if (!isAuthenticated){
+           redirect('/')
+       }
+   }, [isAuthenticated])
 
     const getUserData = async ()=>{
         try {
@@ -40,9 +40,9 @@ const page = () => {
         }
     }
 
-    // useEffect(()=>{
-    //     getUserData()
-    // }, [])
+    useEffect(()=>{
+        getUserData()
+    }, [])
 
 
   return (
